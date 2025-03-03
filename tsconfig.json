@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "moduleDetection": "force",
+    "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "strictNullChecks": true // Aqui faz com que o javascript passe a considerar os valores nulos quando estivermos fazendo uma verificação nas funções
+  }
+}
