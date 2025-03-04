@@ -9,23 +9,37 @@ value1 = null;
 console.log(typeof value1);
 
 /* 
-  Aqui quando damos um typeof no null ele retorna um object devido há um bug
-  no javascript que tem desde há primeira versão da linguagem, isso acontece porque 
-  na epoca da construção da linguagem, ela tinha 32bits que eram unidades de valores 
-  que utilizamos para representar um valor dentro do javascript, então cada bit representa
-  zero ou um, há menor unidade computacional que temos.
-  Então os tres primeiros valores eles eram utilizados pra dizer qual o tipo de valor que 
-  está vindo, e nesse caso, de um há 3 bits para o compilador poder fazer as operaçãoes de forma correta.
-  E foi arbitrariamente definido que zero, zero, zero representava o tipo objeto. Então quando definiamos um valor
-  nulo, todos os valores seguintes ficavam zeros, fazendo com que o compilador do javascript se confundisse e entregasse 
-  um valor que não é o tipo definido corretamente. 
+  No JavaScript, o typeof null retorna "object" devido a um erro na implementação original da linguagem. 
+  Esse erro está relacionado à forma como o JavaScript internamente armazena e classifica os tipos de dados.
+
+  Como o erro aconteceu?
+
+  Na versão inicial do JavaScript, os valores eram representados internamente por um sistema baseado em 32 bits. 
+  Nessa estrutura, uma parte dos bits era usada para indicar o tipo de dado.
+	•	Nos primeiros três bits, o JavaScript usava um identificador para determinar se um valor era um objeto ou outro 
+    tipo de dado.
+	•	Foi convencionado que o identificador 000 (três bits zerados) representaria objetos.
+
+  O problema ocorre porque, internamente, o valor null era armazenado como todos os bits zerados (00000000). 
+  Isso fez com que o interpretador do JavaScript o classificasse erroneamente como um objeto, já que os três 
+  primeiros bits eram 000, o mesmo identificador reservado para objetos.
+
+  Por que não foi corrigido?
+
+  Embora esse erro seja conhecido há muito tempo, corrigir esse comportamento poderia quebrar códigos existentes que 
+  dependem desse retorno. Por isso, mesmo nas versões mais modernas do JavaScript, typeof null ainda retorna "object".
+
+  Resumo
+	•	typeof null === "object" acontece por um erro histórico na forma como os tipos foram representados em 32 bits.
+	•	O null é armazenado internamente como 00000000, o que faz o interpretador categorizá-lo incorretamente como um objeto.
+	•	Esse erro não foi corrigido para evitar problemas de compatibilidade com códigos antigos.
 */
 
 function hello(value: string | null | undefined){
-  if(value){
+  if(value) {
     console.log("Hello, " + value.toUpperCase())
   }
 }
 
 
-hello(null)
+hello(undefined)

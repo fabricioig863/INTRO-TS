@@ -28,3 +28,6 @@ console.log(getListUserData(Fabricio, "firstName" ))
 // console.log(getListUserData(Fabricio, "lastName" ))
 // console.log(getListUserData(Fabricio, "age" ))
 // console.log(getListUserData(Fabricio, "name" ))
+
+
+
